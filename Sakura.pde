@@ -8,7 +8,7 @@ size(600,600);
 }
 
 void draw(){
-  background(255);
+  background(240,255,255);
   pushMatrix();
   translate(x,y);
   rotate(frameCount/r);
