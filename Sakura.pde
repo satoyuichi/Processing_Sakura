@@ -2,6 +2,7 @@ Generator g = new Generator ();
 
 void setup () {
     size (640, 480, P3D);
+    blendMode (ADD);
 }
 
 void draw () {
