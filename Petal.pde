@@ -1,5 +1,5 @@
 class Petal {
-    float gravity = 0.098f;
+    float gravity = 0.098f * 0.5f;
 
     float totalFrame = 0.0f;
     float life = 30.0f;
@@ -25,7 +25,7 @@ class Petal {
     }
 
     boolean finished () {
-	return totalFrame >= life;
+		return totalFrame >= life;
     }
 
 	void setColor (color c) {
@@ -36,7 +36,7 @@ class Petal {
 	float alphaFactor = 1.0f - (totalFrame / life) * (totalFrame / life);
 
 	pushMatrix ();
-	translate (position.x, position.y + totalFrame * totalFrame * gravity * 0.5f);
+	translate (position.x, position.y + totalFrame * totalFrame * gravity);
 
 	rotation.add (addRotation);
 	rotateZ (rotation.z);
