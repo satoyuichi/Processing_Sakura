@@ -39,7 +39,9 @@ class Generator {
 
     Generator () {
 		velocity = new PVector (random (-5.0f, 5.0f), random (-5.0f, -13.0f));
-	petals = new ArrayList<Petal>();
+		float val = random (13, 55);
+		rgb = color (196 + val, 50 + val, 80 + val);
+		petals = new ArrayList<Petal>();
     }
 
     void generate () {
@@ -49,24 +51,22 @@ class Generator {
 		
 		Petal p = new Petal (position.x, position.y, random (0.0f, TWO_PI), scale);
 
-		float val = random (13, 55);
-	rgb = color (196 + val, 50 + val, 80 + val);
-	p.setColor (rgb);
+		p.setColor (rgb);
 
-	petals.add (p);
+		petals.add (p);
     }
     
     void draw (float step) {
-	for (int i = petals.size() - 1; i >= 0; i--) {
-	    Petal petal = petals.get (i);
-	    petal.draw (step);
-	    if (petal.finished ()) {
-		petals.remove (i);
-	    }
-	}
+		for (int i = petals.size() - 1; i >= 0; i--) {
+			Petal petal = petals.get (i);
+			petal.draw (step);
+			if (petal.finished ()) {
+				petals.remove (i);
+			}
+		}
 
-	position.add (velocity); 
-	position.y += totalFrame * totalFrame * 0.098f * 0.02f;
-	totalFrame += step;
+		position.add (velocity);
+		position.y += totalFrame * totalFrame * 0.098f * 0.02f;
+		totalFrame += step;
     }
 }

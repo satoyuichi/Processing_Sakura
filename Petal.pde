@@ -12,16 +12,16 @@ class Petal {
 	color rgb;
      
     Petal (float x, float y, float r, float s) {
-	position = new PVector (x, y);
-	rotation = new PVector (r, r, r);
+		position = new PVector (x, y);
+		rotation = new PVector (r, r, r);
 
-	velocity = PVector.random2D();
- 	velocity.mult (3.0f + s * 3.0f);
+		velocity = PVector.random2D();
+		velocity.mult (3.0f + s * 3.0f);
 
-	addRotation = new PVector (0, 0, random (-PI, PI));
-	addRotation.mult (0.05f);
+		addRotation = new PVector (0, 0, random (-PI, PI));
+		addRotation.mult (0.05f);
 
-	scale = s;
+		scale = s;
     }
 
     boolean finished () {
@@ -33,33 +33,32 @@ class Petal {
 	}
 
     void draw (float step) {
-	float alphaFactor = 1.0f - (totalFrame / life) * (totalFrame / life);
+		float alphaFactor = 1.0f - (totalFrame / life) * (totalFrame / life);
 
-	pushMatrix ();
-	translate (position.x, position.y + totalFrame * totalFrame * gravity);
+		pushMatrix ();
+		translate (position.x, position.y + totalFrame * totalFrame * gravity);
 
-	rotation.add (addRotation);
-	rotateZ (rotation.z);
-	scale (scale);
-	//	  rotate (frameCount / r);
+		rotation.add (addRotation);
+		rotateZ (rotation.z);
+		scale (scale);
 
-	for (int i = 0; i < 5; i++) {
-	    rotate (TWO_PI * 1 / 5);
-	    noStroke ();
-	    fill (rgb, 128 * alphaFactor);
-	    stroke (225, 50, 80, 100);
-	    bezier (0, 0, 35, -20, 35, -52, 8, -80);
-	    bezier (0, 0, -35, -20, -35, -52, -8, -80);
-	    stroke (225, 50, 80, 30);
-	    triangle (0, 0, 8, -80, 0, -75);
-	    triangle (0, 0, -8, -80, 0, -75);
-	}
+		for (int i = 0; i < 5; i++) {
+			rotate (TWO_PI * 1 / 5);
+			noStroke ();
+			fill (rgb, 128 * alphaFactor);
+			stroke (225, 50, 80, 100);
+			bezier (0, 0, 35, -20, 35, -52, 8, -80);
+			bezier (0, 0, -35, -20, -35, -52, -8, -80);
+			stroke (225, 50, 80, 30);
+			triangle (0, 0, 8, -80, 0, -75);
+			triangle (0, 0, -8, -80, 0, -75);
+		}
   
-	fill (200, 50, 100, 200 * alphaFactor);
-	ellipse (0, 0, 15, 15);
-	popMatrix ();
+		fill (rgb, 200 * alphaFactor);
+		ellipse (0, 0, 15, 15);
+		popMatrix ();
 
-	position.add (velocity);
-	totalFrame += step;
+		position.add (velocity);
+		totalFrame += step;
     }
 }
